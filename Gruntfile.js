@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    relativeRoot: {
+    relativize: {
 
       simple: {
         src: 'test/fixtures/stylish.css',
@@ -42,9 +42,29 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= relativeRoot.fancy.options.root %>',
+          cwd: '<%= relativize.fancy.options.root %>',
           src: ['*.css', '*.html'],
           dest: 'tmp/fancy/'
+        }]
+      },
+
+      forced: {
+        options: {
+          root: 'test/fixtures'
+        },
+        files: [{
+          expand: true,
+          cwd: '<%= relativize.forced.options.root %>',
+          src: ['*.css', '*.html'],
+          dest: 'tmp/forced/',
+          forceRelative: '../../../'
+        },
+        {
+          expand: true,
+          cwd: '<%= relativize.forced.options.root %>',
+          src: ['*.css', '*.html'],
+          dest: 'tmp/forcedWithoutFinalSlash/',
+          forceRelative: '../../..'
         }]
       }
     },
@@ -66,7 +86,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'relativeRoot', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'relativize', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

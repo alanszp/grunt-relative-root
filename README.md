@@ -12,16 +12,17 @@ Add something like this to your Gruntfile:
 grunt.loadNpmTasks('grunt-relative-root');
 
 grunt.initConfig({
-  relativeRoot: {
+  relativize: {
     yourTarget: {
       options: {
         root: 'public'
       },
       files: [{
         expand: true,
-        cwd: '<%= relativeRoot.yourTarget.options.root %>',
+        cwd: '<%= relativize.yourTarget.options.root %>',
         src: ['*.css', '*.html'],
         dest: 'out/'
+        forceRelative: '../..'
       }]
     }
   }
