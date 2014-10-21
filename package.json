@@ -1,7 +1,7 @@
 {
   "name": "grunt-relativize",
   "description": "Relativize absolute paths in HTML and CSS",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "homepage": "https://github.com/alanszp/grunt-relativize",
   "author": {
     "name": "Alan Szpigiel",
